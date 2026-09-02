@@ -1,7 +1,9 @@
 const prompt = require("prompt-sync")();
-const vagas = require("./mock_vagas");
-const { Perfil } = require("./model/perfil.js");
+const vagas = require("./mock/mock_vagas");
+const perfils = require("./mock/mock_perfils");
 
+const { Perfil } = require("./model/perfil");
+const { analisarTodasAsVagas } = require("./service/compatibilidade");
 let opcao;
 
 do {
@@ -10,7 +12,7 @@ do {
   console.log(  "===========================================================================");
   console.log("[1] Perfil do candidato");
   console.log("[2] Lista de vagas");
-  console.log("[3] Calcular compatibilidade com cada vaga");
+  console.log("[3] Calcular compatibilidade canditatos X Vaga");
   console.log("[0] Sair");
 
   opcao = prompt("Escolha uma opção: ");
@@ -21,6 +23,9 @@ do {
       break;
     case "2":
       listarVagas();
+      break;
+    case "3":
+      compatibilidadeVagas();
       break;
     case "0":
       console.log("Encerrando o sistema...");
@@ -38,8 +43,21 @@ function criarPerfilCandidato() {
                                 25
                               );
   candidato.apresentar();
+  exibirCompatibilidades(candidato, vagas);
 
 }
+
+function exibirCompatibilidades(candidato, vagas) {
+  console.log("\n--- [RF03] COMPATIBILIDADE COM AS VAGAS ---");
+
+  const analises = analisarTodasAsVagas(candidato, vagas);
+
+  // RF08: Uso de .forEach()
+  analises.forEach((item) => {
+    console.log(`\nVaga: ${item.cargo}`);
+    console.log(`Compatibilidade: ${item.percentual}%`);
+  });
+}  
 
 function listarVagas() {
   const titulo = "\n--- [RF02] Lista de Vagas ---";
@@ -53,3 +71,12 @@ function listarVagas() {
     console.log("-".repeat(titulo.length));
   });
 }
+
+function compatibilidadeVagas() {
+  const titulo = `\n--- [RF08] Compatibilidade Canditados(${perfils.length}) X Vagas(${vagas.length}) ---`;
+  console.log(titulo);
+  perfils.forEach((perfil) => {
+    perfil.apresentar();
+    exibirCompatibilidades(perfil, vagas);
+  });
+}  
