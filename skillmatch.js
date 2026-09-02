@@ -38,9 +38,10 @@ function listarVagas() {
   console.log(titulo);
 
   vagas.forEach((vaga) => {
-    console.log(`\nID: ${vaga.id}`);
-    console.log(`Título: ${vaga.cargo}`);
-    console.log(`Habilidades exigidas: ${vaga.habilidades.join(", ")}`);
+    console.log(`Cargo: ${vaga.cargo}`);
+    console.log(`Empresa: ${vaga.empresa}`);
+    console.log(`Habilidades exigidas: ${vaga.habilidadesObrigatorias.join(", ")}`);
+    console.log(`Habilidades Desejaveis: ${vaga.habilidadesDesejadas.join(", ")}`);
     console.log("-".repeat(titulo.length));
   });
 }
