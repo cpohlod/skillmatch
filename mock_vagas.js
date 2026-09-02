@@ -2,17 +2,23 @@ const vagas = [
   {
     id: 1,
     cargo: "Desenvolvedor Frontend Júnior",
-    habilidades: ["JavaScript", "HTML", "CSS", "Git"]
+    empresa: "HCGD Sistemas Ltda",
+    habilidadesObrigatorias: ["JavaScript", "HTML", "CSS", "Git"],
+    habilidadesDesejadas: ["Java", "React", "Angular"]
   },
   {
     id: 2,
     cargo: "Desenvolvedor Backend Júnior",
-    habilidades: ["JavaScript", "Node.js", "SQL", "Git"]
+    empresa: "HCGD Sistemas Ltda",
+    habilidadesObrigatorias: ["JavaScript", "Node.js", "SQL", "Git"],
+    habilidadesDesejadas: ["Java", "Spring Boot", "Docker", "Python"]
   },
   {
     id: 3,
     cargo: "Desenvolvedor Full Stack Júnior",
-    habilidades: ["JavaScript", "HTML", "CSS", "Node.js", "SQL"]
+    empresa: "HCGD Sistemas Ltda",
+    habilidadesObrigatorias: ["JavaScript", "HTML", "CSS", "Node.js", "SQL", "React"],
+    habilidadesDesejadas: ["Java", "Spring Boot", "Docker", "Python"]
   }
 ];
 
