@@ -1,5 +1,6 @@
 const prompt = require("prompt-sync")();
 const vagas = require("./mock_vagas");
+const { Perfil } = require("./model/perfil.js");
 
 let opcao;
 
@@ -31,6 +32,13 @@ do {
 
 function criarPerfilCandidato() {
   console.log("\n--- [RF01] Perfil do Candidato ---");
+  const candidato = new Perfil( "Cleverson",
+                                "Desenvolvimento de Software / Arquitetura",
+                                ["JavaScript", "TypeScript", "Node.js", "Angular", "Java", "Spring Boot", "SQL", "Git", "Docker"],
+                                25
+                              );
+  candidato.apresentar();
+
 }
 
 function listarVagas() {
