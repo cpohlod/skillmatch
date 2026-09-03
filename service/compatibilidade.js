@@ -1,5 +1,3 @@
-
-
 function calcularPercentualCompatibilidade(habilidadesCandidato, habilidadesVaga) {
   console.log("[DEBUG] Habilidades Candidato:", habilidadesCandidato);
   console.log("[DEBUG] Habilidades Vaga:", habilidadesVaga);
@@ -21,16 +19,24 @@ function calcularPercentualCompatibilidade(habilidadesCandidato, habilidadesVaga
   return Math.round(percentual);
 }
 
+function classificarCompatibilidade(percentual) {
+  if (percentual >= 70) return "Alta compatibilidade";
+  if (percentual >= 40) return "Média compatibilidade";
+  return "Baixa compatibilidade";
+}
+
 function analisarCompatibilidadeVaga(candidato, vaga) {
   const percentual = calcularPercentualCompatibilidade(
     candidato.habilidades,
     vaga.habilidadesObrigatorias
   );
+  const classificacao = classificarCompatibilidade(percentual);
 
   return {
     vagaId: vaga.id,
     cargo: vaga.cargo,
-    percentual
+    percentual,
+    classificacao
   };
 }
 
@@ -41,6 +47,7 @@ function analisarTodasAsVagas(candidato, vagas) {
 
 module.exports = {
   calcularPercentualCompatibilidade,
+  classificarCompatibilidade,
   analisarCompatibilidadeVaga,
   analisarTodasAsVagas
 };
