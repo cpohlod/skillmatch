@@ -55,7 +55,7 @@ function exibirCompatibilidades(candidato, vagas) {
   // RF08: Uso de .forEach()
   analises.forEach((item) => {
     console.log(`\nVaga: ${item.cargo}`);
-    console.log(`Compatibilidade: ${item.percentual}%`);
+    console.log(`Compatibilidade: ${item.percentual}% (${item.classificacao})`);
   });
 }  
 
