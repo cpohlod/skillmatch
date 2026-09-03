@@ -1,9 +1,11 @@
 const prompt = require("prompt-sync")();
+
+const { Perfil } = require("./model/perfil");
 const vagas = require("./mock/mock_vagas");
 const perfils = require("./mock/mock_perfils");
 
-const { Perfil } = require("./model/perfil");
-const { analisarTodasAsVagas } = require("./service/compatibilidade");
+const { analisarTodasAsVagas, encontrarMelhorVaga } = require("./service/compatibilidade");
+
 let opcao;
 
 do {
@@ -51,12 +53,24 @@ function exibirCompatibilidades(candidato, vagas) {
   console.log("\n--- [RF03] COMPATIBILIDADE COM AS VAGAS ---");
 
   const analises = analisarTodasAsVagas(candidato, vagas);
-
+  
   // RF08: Uso de .forEach()
   analises.forEach((item) => {
     console.log(`\nVaga: ${item.cargo}`);
     console.log(`Compatibilidade: ${item.percentual}% (${item.classificacao})`);
   });
+
+  // Identifica e exibe a vaga com maior compatibilidade (RF06)
+  const melhorVaga = encontrarMelhorVaga(analises);
+  if (melhorVaga) {
+    console.log("\n[RF06] VAGA COM MAIOR COMPATIBILIDADE");
+    if (melhorVaga.percentual === 0) {
+      console.log(`Nenhuma vaga compatível no momento (maior score: 0%).`);
+    } else {
+      console.log(`Vaga indicada: ${melhorVaga.cargo}`);
+      console.log(`Percentual: ${melhorVaga.percentual}% (${melhorVaga.classificacao})`);
+    }
+  }  
 }  
 
 function listarVagas() {

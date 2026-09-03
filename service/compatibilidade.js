@@ -40,6 +40,21 @@ function analisarCompatibilidadeVaga(candidato, vaga) {
   };
 }
 
+/**
+ * RF06 – Encontrar a vaga com maior compatibilidade
+ * RF08 – Uso de métodos de array (.reduce), 
+ * utilizado para encontrar o melhor e um unico resultado, sem modificar os dados.
+ * @param {Array} analises Lista gerada por analisarTodasAsVagas
+ * @returns {Object|null} A vaga com maior percentual
+ */
+function encontrarMelhorVaga(analises) {
+  if (!analises || analises.length === 0) return null;
+
+  return analises.reduce((melhor, atual) => {
+    return atual.percentual > melhor.percentual ? atual : melhor;
+  });
+}
+
 function analisarTodasAsVagas(candidato, vagas) {
   // RF08: Uso de .map()
   return vagas.map((vaga) => analisarCompatibilidadeVaga(candidato, vaga));
@@ -49,5 +64,6 @@ module.exports = {
   calcularPercentualCompatibilidade,
   classificarCompatibilidade,
   analisarCompatibilidadeVaga,
+  encontrarMelhorVaga,
   analisarTodasAsVagas
 };
