@@ -42,8 +42,7 @@ function criarPerfilCandidato() {
   const candidato = new Perfil( "Cleverson",
                                 "Desenvolvimento de Software / Arquitetura",
                                 ["JavaScript", "TypeScript", "Node.js", "Angular", "Java", "Spring Boot", "SQL", "Git", "Docker"],
-                                25,
-                                "email@gmail.com"
+                                25
                               );
   candidato.apresentar();
   exibirCompatibilidades(candidato, vagas);
@@ -59,6 +58,7 @@ function exibirCompatibilidades(candidato, vagas) {
   analises.forEach((item) => {
     console.log(`\nVaga: ${item.cargo}`);
     console.log(`Compatibilidade: ${item.percentual}% (${item.classificacao})`);
+    console.log(`Faltam: ${item.faltantes.length > 0 ? item.faltantes.join(", ") : "Nenhuma!"}`);
   });
 
   // Identifica e exibe a vaga com maior compatibilidade (RF06)
@@ -70,7 +70,7 @@ function exibirCompatibilidades(candidato, vagas) {
     } else {
       console.log(`Vaga indicada: ${melhorVaga.cargo}`);
       console.log(`Percentual: ${melhorVaga.percentual}% (${melhorVaga.classificacao})`);
-    }
+    }    
   }  
 }  
 

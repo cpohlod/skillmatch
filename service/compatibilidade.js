@@ -25,18 +25,33 @@ function classificarCompatibilidade(percentual) {
   return "Baixa compatibilidade";
 }
 
+function obterHabilidadesFaltantes(habilidadesCandidato, habilidadesVaga) {
+  return habilidadesVaga.filter(
+    (habVaga) =>
+      !habilidadesCandidato.some(
+        (habCand) => habCand.trim().toLowerCase() === habVaga.trim().toLowerCase()
+      )
+  );
+}
+
 function analisarCompatibilidadeVaga(candidato, vaga) {
   const percentual = calcularPercentualCompatibilidade(
     candidato.habilidades,
     vaga.habilidadesObrigatorias
   );
   const classificacao = classificarCompatibilidade(percentual);
-
+  
+  const faltantes = obterHabilidadesFaltantes(
+    candidato.habilidades,
+    vaga.habilidadesObrigatorias
+  );  
+  
   return {
     vagaId: vaga.id,
     cargo: vaga.cargo,
     percentual,
-    classificacao
+    classificacao,
+    faltantes
   };
 }
 
