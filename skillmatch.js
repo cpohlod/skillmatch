@@ -1,6 +1,6 @@
 const prompt = require("prompt-sync")();
 
-const { Perfil } = require("./model/perfil");
+const Perfil = require("./model/perfil");
 const vagas = require("./mock/mock_vagas");
 const perfils = require("./mock/mock_perfils");
 
@@ -42,7 +42,8 @@ function criarPerfilCandidato() {
   const candidato = new Perfil( "Cleverson",
                                 "Desenvolvimento de Software / Arquitetura",
                                 ["JavaScript", "TypeScript", "Node.js", "Angular", "Java", "Spring Boot", "SQL", "Git", "Docker"],
-                                25
+                                25,
+                                "email@gmail.com"
                               );
   candidato.apresentar();
   exibirCompatibilidades(candidato, vagas);
