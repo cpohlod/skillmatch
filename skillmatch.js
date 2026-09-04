@@ -39,12 +39,13 @@ do {
 } while (opcao !== "0");
 
 function criarPerfilCandidato() {
-  console.log("\n--- [RF01] Perfil do Candidato ---");
+  console.log("\n--- [RF01] Criar Perfil do Candidato ---");
   const perfil = new Perfil( "Cleverson",
                                 "Desenvolvimento de Software / Arquitetura",
                                 ["JavaScript", "TypeScript", "Node.js", "Angular", "Java", "Spring Boot", "SQL", "Git", "Docker"],
                                 25
                               );
+  // Processa o perfil sem o callBack
   processarPerfil(perfil);                            
 }
 
@@ -107,13 +108,19 @@ function compatibilidadeVagas() {
   const titulo = `\n--- [RF08] Compatibilidade Canditados(${perfils.length}) X Vagas(${vagas.length}) ---`;
   console.log(titulo);
   perfils.forEach((perfil) => {
-    processarPerfil(perfil);
+    processarPerfil(perfil, processarPlanoDeEstudos);
   });
 }  
 
-function processarPerfil(perfil) {                            
+function processarPerfil(perfil, processarPerfilCallback) {                            
   perfil.apresentar();
   console.log("[DEBUG] Tipo de vagas:", Array.isArray(vagas), vagas);
   exibirCompatibilidades(perfil, vagas);
+  if (typeof processarPerfilCallback === "function") {
+    processarPerfilCallback(perfil);
+  }
+}
+
+function processarPlanoDeEstudos(perfil) {
   exibirPlanoDeEstudos(perfil, vagas);
 }
