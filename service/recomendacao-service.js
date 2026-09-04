@@ -88,6 +88,26 @@ function gerarRecomendacaoEstudo(candidato, vagas) {
   };
 }
 
+function gerarRecomendacaoEstudoService(candidato, vagas, delayMs = 1000) {
+  return new Promise((resolve, reject) => {
+    if (!candidato || !vagas) {
+      return reject(new Error("Candidato ou lista de vagas não fornecidos."));
+    }
+
+    console.log(`Buscando recomendações no servidor para ${candidato.nome}...`);
+    console.log("[DEBUG] vaga service:", vagas);
+    setTimeout(() => {
+      try {
+        const resultado = gerarRecomendacaoEstudo(candidato, vagas);
+        resolve(resultado);
+      } catch (erro) {
+        console.error("[ERRO INTERNO NO SERVICE]:", erro);
+        reject(erro);
+      }
+    }, delayMs);
+  });
+}
+
 module.exports = {
-  gerarRecomendacaoEstudo
+  gerarRecomendacaoEstudoService
 };

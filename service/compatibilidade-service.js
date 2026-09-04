@@ -75,10 +75,25 @@ function analisarTodasAsVagas(candidato, vagas) {
   return vagas.map((vaga) => analisarCompatibilidadeVaga(candidato, vaga));
 }
 
+function encontrarMelhorVagaService(analises) {
+   return new Promise((resolve) => {
+    console.log("Encontrando(lógica de negócio) melhor vaga no servidor...");
+    setTimeout(() => {
+      resolve(encontrarMelhorVaga(analises));
+    }, 500);
+  });
+}
+
+function analisarTodasAsVagasService(candidato, vagas) {
+  return new Promise((resolve) => {
+   console.log("Analisando todas as vagas(lógica de negócio) no servidor...");
+   setTimeout(() => {
+      resolve(analisarTodasAsVagas(candidato, vagas));
+    }, 500);
+  });
+}  
+
 module.exports = {
-  calcularPercentualCompatibilidade,
-  classificarCompatibilidade,
-  analisarCompatibilidadeVaga,
-  encontrarMelhorVaga,
-  analisarTodasAsVagas
+  encontrarMelhorVagaService,
+  analisarTodasAsVagasService
 };
