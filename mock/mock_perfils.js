@@ -1,9 +1,25 @@
-const Perfil = require("../model/perfil");
-
-const perfils = [  
-  new Perfil("Diana", "Desenvolvimento de Front-end", ["HTML", "CSS"], 1, "mulher.maravilha@gmail.com"),
-  new Perfil("Tony Stark", "Desenvolvimento de Software", ["Java", "SQL", "Git"], 3, "tony.stark@gmail.com"),
-  new Perfil("Homer Simpson", "Desenvolvimento", ["Windows", "Word", "Excel"], 2, "homer.simpson@gmail.com")
+const perfisJson = [
+  {
+    nome: "Diana",
+    areaInteresse: "Desenvolvimento de Front-end",
+    habilidades: ["HTML", "CSS"],
+    tempoExperiencia: 1,
+    email: "mulher.maravilha@gmail.com"
+  },
+  {
+    nome: "Tony Stark",
+    areaInteresse: "Desenvolvimento de Software / Arquitetura",
+    habilidades: ["JavaScript", "TypeScript", "Node.js", "SQL", "Git", "Docker"],
+    tempoExperiencia: 10,
+    email: "tony.stark@avengers.com"
+  },
+  {
+    nome: "Homer Simpson",
+    areaInteresse: "Desenvolvimento",
+    habilidades: ["Windows", "Word", "Excel"],
+    tempoExperiencia: 2,
+    email: "homer.simpson@gmail.com"
+  }
 ];
 
-module.exports = perfils;
+module.exports = { perfisJson };
