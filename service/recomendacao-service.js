@@ -23,12 +23,15 @@ function obterTodasHabilidadesFaltantes(candidato, vagas) {
 function contarFrequenciaFaltantes(listaFaltantes) {
   const frequencia = {};
 
-  for (const habilidade of listaFaltantes) {
+  let i = 0;
+  while (i < listaFaltantes.length) {
+    const habilidade = listaFaltantes[i];
     if (frequencia[habilidade]) {
       frequencia[habilidade] += 1;
     } else {
       frequencia[habilidade] = 1;
     }
+    i++;
   }
 
   return frequencia;
