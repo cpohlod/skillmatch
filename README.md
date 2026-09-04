@@ -97,3 +97,10 @@ Apesar de rodar em um único processo local no Node.js, o sistema implementa ess
 * **Camada de Servidor (Back-end / Services):** Os módulos dentro de service/ funcionam como endpoints remotos, encapsulando cálculos de compatibilidade, planos de recomendação e fornecimento de dados através de Promises com latência de resposta (setTimeout).  
 * **Camada de Cliente (Interface / CLI):** O arquivo skillmatch.js opera como consumidor desses serviços. Ele não calcula fórmulas diretamente em seu fluxo principal: ele envia os parâmetros, espera as respostas assíncronas via await e monta as saídas do menu interativo.
 * **Isolamento de Regras de Negócio no Serviço:** O cálculo de compatibilidade e a identificação da melhor vaga foram alocados propositalmente na camada service/ (compatibilidade-service.js). Essa abordagem segue os princípios de arquitetura de software, onde a lógica de domínio e as regras de negócio pertencem exclusivamente ao Backend/Servidor. O cliente (skillmatch.js) atua como consumidor (Frontend/CLI), encarregando-se apenas da captura de dados e da renderização visual no terminal.
+
+### Trello
+https://trello.com/invite/b/6a6937558e1cbe616edf8419/ATTIfa25e7aed929e274daf604346667bc756DD981D8/curso-react
+
+### Video
+https://drive.google.com/drive/folders/1_3mvkSUqCqvL5kEs9gFumu0ZewHaLNCj?usp=sharing
+

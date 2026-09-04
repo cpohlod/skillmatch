@@ -2,7 +2,7 @@ const prompt = require("prompt-sync")();
 
 const Perfil = require("./model/perfil");
 
-const perfils = require("./mock/mock_perfils");
+//const perfils = require("./mock/mock_perfils");
 
 const { analisarTodasAsVagasService, encontrarMelhorVagaService } = require("./service/compatibilidade-service");
 const { buscarVagasService } = require("./service/vagas-service");
@@ -17,7 +17,7 @@ async function main() {
     const vagas = await buscarVagasService(1200);
     console.log(`Sucesso: ${vagas.length} vagas carregadas do servidor.\n`);
     const perfis = await buscarPerfisService(1000);
-    console.log(`Sucesso: ${perfils.length} perfils carregados do servidor.\n`);
+    console.log(`Sucesso: ${perfis.length} perfis carregados do servidor.\n`);
     let opcao;
 
     do {
@@ -126,7 +126,7 @@ function listarVagas(listaVagas) {
 }
 
 async function compatibilidadeVagas(listaPerfis, listaVagas) {
-  const titulo = `\n--- [RF08] Compatibilidade Canditados(${perfils.length}) X Vagas(${listaVagas.length}) ---`;
+  const titulo = `\n--- [RF08] Compatibilidade Canditados(${listaPerfis.length}) X Vagas(${listaVagas.length}) ---`;
   console.log(titulo);
   for (const perfil of listaPerfis) {
     await processarPerfil(perfil, listaVagas, processarPlanoDeEstudos);
