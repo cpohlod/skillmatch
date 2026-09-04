@@ -98,7 +98,6 @@ function gerarRecomendacaoEstudoService(candidato, vagas, delayMs = 1000) {
     }
 
     console.log(`Buscando recomendações no servidor para ${candidato.nome}...`);
-    console.log("[DEBUG] vaga service:", vagas);
     setTimeout(() => {
       try {
         const resultado = gerarRecomendacaoEstudo(candidato, vagas);

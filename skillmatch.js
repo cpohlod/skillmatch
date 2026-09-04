@@ -135,7 +135,6 @@ async function compatibilidadeVagas(listaPerfis, listaVagas) {
 
 async function processarPerfil(perfil, listaVagas, processarPerfilCallback) {                            
   perfil.apresentar();
-  console.log("[DEBUG] Tipo de vagas:", Array.isArray(listaVagas), listaVagas);
   await exibirCompatibilidades(perfil, listaVagas);
   if (typeof processarPerfilCallback === "function") {
     await processarPerfilCallback(perfil, listaVagas);
