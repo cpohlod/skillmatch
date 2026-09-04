@@ -5,6 +5,7 @@ const vagas = require("./mock/mock_vagas");
 const perfils = require("./mock/mock_perfils");
 
 const { analisarTodasAsVagas, encontrarMelhorVaga } = require("./service/compatibilidade");
+const { gerarRecomendacaoEstudo } = require("./service/recomendacao");
 
 let opcao;
 
@@ -39,14 +40,12 @@ do {
 
 function criarPerfilCandidato() {
   console.log("\n--- [RF01] Perfil do Candidato ---");
-  const candidato = new Perfil( "Cleverson",
+  const perfil = new Perfil( "Cleverson",
                                 "Desenvolvimento de Software / Arquitetura",
                                 ["JavaScript", "TypeScript", "Node.js", "Angular", "Java", "Spring Boot", "SQL", "Git", "Docker"],
                                 25
                               );
-  candidato.apresentar();
-  exibirCompatibilidades(candidato, vagas);
-
+  processarPerfil(perfil);                            
 }
 
 function exibirCompatibilidades(candidato, vagas) {
@@ -74,6 +73,23 @@ function exibirCompatibilidades(candidato, vagas) {
   }  
 }  
 
+function exibirPlanoDeEstudos(candidato, vagas) {
+  console.log(`\n=== [RF07] PLANO DE ESTUDOS: ${candidato.nome.toUpperCase()} ===`);
+  
+  const recomendacao = gerarRecomendacaoEstudo(candidato, vagas);
+
+  if (recomendacao.prioridades.length === 0) {
+    console.log(recomendacao.mensagem);
+    return;
+  }
+
+  recomendacao.prioridades.forEach((item, index) => {
+    console.log(`\n${index + 1}. [${item.prioridade.toUpperCase()}] ${item.habilidade}`);
+    console.log(`   Impacto: Exigido em ${item.vagasQueExigem} de ${recomendacao.totalVagasAnalisadas} vagas cadastradas`);
+    console.log(`   O que estudar: ${item.recursoSugerido}`);
+  });
+}
+
 function listarVagas() {
   const titulo = "\n--- [RF02] Lista de Vagas ---";
   console.log(titulo);
@@ -91,7 +107,13 @@ function compatibilidadeVagas() {
   const titulo = `\n--- [RF08] Compatibilidade Canditados(${perfils.length}) X Vagas(${vagas.length}) ---`;
   console.log(titulo);
   perfils.forEach((perfil) => {
-    perfil.apresentar();
-    exibirCompatibilidades(perfil, vagas);
+    processarPerfil(perfil);
   });
 }  
+
+function processarPerfil(perfil) {                            
+  perfil.apresentar();
+  console.log("[DEBUG] Tipo de vagas:", Array.isArray(vagas), vagas);
+  exibirCompatibilidades(perfil, vagas);
+  exibirPlanoDeEstudos(perfil, vagas);
+}
